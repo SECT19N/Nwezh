@@ -6,6 +6,8 @@ plugins {
 }
 
 kotlin {
+    jvmToolchain(21)
+
     iosArm64()
     iosSimulatorArm64()
 
@@ -17,7 +19,7 @@ kotlin {
         minSdk = libs.versions.android.minSdk.get().toInt()
 
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_11
+            jvmTarget = JvmTarget.JVM_21
         }
         androidResources {
             enable = true
