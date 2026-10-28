@@ -1,39 +1,53 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Server.
+# Nwezh
 
-* [/app/iosApp](./app/iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Prayer times, Qibla and the Quran for Android and iOS. Private and offline: no account, no ads, no
+analytics. Your location, bookmarks and settings stay on your phone.
 
-* [/app/shared](./app/shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./app/shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./app/shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./app/shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Built with Kotlin Multiplatform and Compose Multiplatform. Planned languages: English, Sorani,
+Badini, Kurmanji (Latin) and Arabic.
 
-* [/core](./core/src) is for the code that will be shared between all targets in the project.
-  The most important subfolder is [commonMain](./core/src/commonMain/kotlin). If preferred, you
-  can add code to the platform-specific folders here too.
+**Status:** early development. See the [roadmap](./docs/roadmap.md).
 
-* [/server](./server/src/main/kotlin) is for the Ktor server application.
+## Features (planned)
 
-### Running the apps
+- Prayer times calculated on-device, with several calculation methods, high-latitude rules and
+  per-prayer adjustments
+- Adhan and reminders
+- Qibla compass
+- Hijri calendar with Islamic events
+- Fasting mode (suhoor, iftar, sunnah suggestions, make-up days)
+- Quran reader with translations, bookmarks and last-read position
+- Home-screen widget
+- Light and dark themes
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## Project structure
+
+* [/app/androidApp](./app/androidApp) is the Android entry point.
+* [/app/iosApp](./app/iosApp/iosApp) is the iOS entry point. It is needed even though the UI is
+  shared with Compose Multiplatform.
+* [/app/shared](./app/shared/src) is the shared Compose Multiplatform UI and app logic.
+    - [commonMain](./app/shared/src/commonMain/kotlin) is code common to all targets.
+    - `androidMain`, `iosMain` and `jvmMain` hold platform-specific code.
+* [/core](./core/src) is pure Kotlin logic shared between all targets (prayer times, Qibla, Hijri
+  calendar, fasting rules).
+* [/domain](./domain/src) holds entities, repository and service interfaces, and use cases.
+* [/data](./data/src) holds Room, DataStore and the repository implementations.
+* [/platform](./platform/src) holds the platform implementations (location, compass, notifications).
+* [/designsystem](./designsystem/src) holds the theme and shared UI components.
+
+See [architecture](./docs/architecture.md) and the [roadmap](./docs/roadmap.md).
+
+## Running the apps
 
 - Android app: `./gradlew :app:androidApp:assembleDebug`
-- Server: `./gradlew :server:run`
 - iOS app: open the [/app/iosApp](./app/iosApp) directory in Xcode and run it from there.
 
-### Running tests
+## Running tests
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
-
+- Pure logic: `./gradlew :core:jvmTest :domain:jvmTest`
 - Android tests: `./gradlew :app:shared:testAndroidHostTest`
-- Server tests: `./gradlew :server:test`
 - iOS tests: `./gradlew :app:shared:iosSimulatorArm64Test`
 
----
+## License
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Apache-2.0 (the `LICENSE` file has not been added yet).
