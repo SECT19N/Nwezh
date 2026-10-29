@@ -24,6 +24,7 @@ kotlin {
         androidResources {
             enable = true
         }
+        withHostTest {}
     }
 
     sourceSets {
@@ -38,4 +39,8 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+}
+
+compose.resources {
+    packageOfResClass = "com.section.nwezh.designsystem.resources"
 }

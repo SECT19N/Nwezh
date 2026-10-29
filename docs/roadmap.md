@@ -32,7 +32,8 @@ sub-pages), home-screen widget, adhan alert and reminder, and permission/travel 
 
 ## Target module layout
 
-Clean architecture. Dependencies point inward: presentation -> domain <- data. See `architecture.md`.
+Clean architecture. Dependencies point inward: presentation -> domain <- data. See
+`architecture.md`.
 
 ```
 :core            pure Kotlin KMP libraries, no app knowledge: prayer times, Qibla, Hijri, fasting rules
@@ -73,19 +74,21 @@ There is no server module: the app is offline with no account.
 - [ ] Tests against reference times (published timetables or a known library) for Erbil, Berlin and
   Stockholm in summer (high latitude).
 - [ ] `QiblaCalculator`: great-circle bearing and distance.
-- [ ] `HijriCalendar`: our own implementation from a generated Umm al-Qura month-length table, with a
-  civil-calendar fallback and a day adjustment (see `data-sources.md`).
+- [ ] `HijriCalendar`: our own implementation from a generated Umm al-Qura month-length table, with
+  a civil-calendar fallback and a day adjustment (see `data-sources.md`).
 - [ ] `IslamicEvents` and `FastingRules` (forbidden days, sunnah suggestions, make-up counting).
 - [ ] Next-prayer and countdown logic, including the wrap to tomorrow's Fajr.
 
 ## Phase 2: `:designsystem`
 
-- [ ] M3 light and dark `ColorScheme`.
-- [ ] Shapes and a connected-group component (small inner corners, large outer corners, selected
+- [x] M3 light and dark `ColorScheme`.
+- [x] Shapes and a connected-group component (small inner corners, large outer corners, selected
   item becomes a pill).
-- [ ] Typography with bundled fonts for Latin, Arabic UI and Quran text.
-- [ ] Icon set (Material Symbols Rounded, filled/outlined variants).
-- [ ] Shared components: list row (nav, switch, stepper), bottom sheet, picker, toast, tab bar.
+- [x] Typography with bundled fonts for Latin, Arabic UI and Quran text.
+- [x] Icon set (Material Symbols Rounded, filled/outlined variants).
+- [x] Shared components: list row (nav, switch, stepper), bottom sheet, tab bar.
+- [ ] Picker and toast, once a screen needs them.
+- [x] `:catalog` Android app to review the theme and components (light/dark, LTR/RTL).
 
 ## Phase 3: Localization
 
